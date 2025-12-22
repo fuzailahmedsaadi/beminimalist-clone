@@ -1,4 +1,10 @@
-import { Search, ShoppingBag, User, Menu } from "lucide-react"
+import {
+  Search,
+  ShoppingCart,
+  User,
+  Menu,
+  Star,
+} from "lucide-react"
 
 import {
   Sheet,
@@ -8,60 +14,85 @@ import {
 } from "@/components/ui/sheet"
 
 const navLinks = [
-  { name: "Shop", href: "#" },
-  { name: "Science", href: "#" },
-  { name: "Skin Care Quiz", href: "#" },
-  { name: "About", href: "#" },
+  "Shop",
+  "Best Sellers",
+  "Skin & Body Care",
+  "Baby Care",
+  "Hair Care",
+  "AI Assistants",
+  "Track Order",
 ]
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white">
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-6">
 
-        {/* Logo */}
-        <div className="text-base font-semibold tracking-wide">
-          Be Minimalist
+        {/* LOGO */}
+        <div className="text-xl font-bold tracking-tight">
+          Minimalist
         </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-10 text-sm font-medium text-neutral-800">
+        {/* DESKTOP NAV LINKS */}
+        <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
-              key={link.name}
-              href={link.href}
-              className="relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
+              key={link}
+              href="#"
+              className="
+                relative
+                text-sm
+                font-medium
+                text-neutral-800
+                after:absolute
+                after:left-0
+                after:-bottom-1
+                after:h-0.5
+                after:w-0
+                after:bg-black
+                after:transition-all
+                after:duration-300
+                hover:after:w-full
+              "
             >
-              {link.name}
+              {link}
             </a>
           ))}
         </nav>
 
-        {/* Desktop Icons */}
-        <div className="hidden md:flex items-center gap-5">
-          <Search className="h-5 w-5 cursor-pointer text-neutral-700 hover:text-black transition" />
-          <User className="h-5 w-5 cursor-pointer text-neutral-700 hover:text-black transition" />
-          <ShoppingBag className="h-5 w-5 cursor-pointer text-neutral-700 hover:text-black transition" />
+        {/* DESKTOP ICONS */}
+        <div className="hidden lg:flex items-center gap-5">
+          <Star className="h-5 w-5 cursor-pointer text-neutral-800 hover:text-black" />
+          <Search className="h-5 w-5 cursor-pointer text-neutral-800 hover:text-black" />
+          <User className="h-5 w-5 cursor-pointer text-neutral-800 hover:text-black" />
+
+          {/* CART WITH BADGE */}
+          <div className="relative cursor-pointer">
+            <ShoppingCart className="h-5 w-5 text-neutral-800 hover:text-black" />
+            <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-black text-[10px] text-white">
+              0
+            </span>
+          </div>
         </div>
 
-        {/* Mobile Hamburger */}
-        <div className="md:hidden">
+        {/* MOBILE MENU */}
+        <div className="lg:hidden">
           <Sheet>
             <SheetTrigger asChild>
               <button aria-label="Open Menu">
-                <Menu className="h-6 w-6 text-neutral-800" />
+                <Menu className="h-6 w-6 text-neutral-900" />
               </button>
             </SheetTrigger>
 
             <SheetContent side="right">
-              <div className="flex flex-col gap-6 mt-8 text-base font-medium text-neutral-900">
+              <div className="mt-8 flex flex-col gap-6 text-base font-medium text-neutral-900">
                 {navLinks.map((link) => (
-                  <SheetClose asChild key={link.name}>
+                  <SheetClose asChild key={link}>
                     <a
-                      href={link.href}
+                      href="#"
                       className="hover:opacity-70 transition"
                     >
-                      {link.name}
+                      {link}
                     </a>
                   </SheetClose>
                 ))}
@@ -74,5 +105,7 @@ export default function Navbar() {
     </header>
   )
 }
+
+
 
 
